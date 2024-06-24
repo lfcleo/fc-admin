@@ -1,20 +1,20 @@
-name: Build and Deploy
+name: FC-Admin auto deploy          # 大标题
 on: [push]
 permissions:
-  contents: write
+  contents: write                   # 设置权限，可写，也可以不用配置，v4版本新增的
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  build-and-deploy:                 # 其中一个任务的名称，ID
+    runs-on: ubuntu-latest          # 这个任务运行所需的环境
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v4
+      - name: Checkout 🛎️           # 第一步：获取源码
+        uses: actions/checkout@v4   # 使用的工具
  
-      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+      - name: Install and Build 🔧  # 第二步：下载依赖和构建
         run: |
           npm ci
           npm run build
  
-      - name: Deploy 🚀
+      - name: Deploy 🚀             # 第三步：部署
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist # The folder the action should deploy.
+          folder: dist              # 部署的目录
