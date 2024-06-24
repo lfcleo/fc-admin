@@ -1,20 +1,51 @@
-name: FC-Admin auto deploy          # 大标题
-on: [push]
+# 将静态内容部署到 GitHub Pages 的简易工作流程
+name: Deploy static content to Pages
+
+on:
+  # 仅在推送到默认分支时运行。
+  push:
+    branches: ['main']
+
+  # 这个选项可以使你手动在 Action tab 页面触发工作流
+  workflow_dispatch:
+
+# 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages。
 permissions:
-  contents: write                   # 设置权限，可写，也可以不用配置，v4版本新增的
+  contents: read
+  pages: write
+  id-token: write
+
+# 允许一个并发的部署
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
 jobs:
-  build-and-deploy:                 # 其中一个任务的名称，ID
-    runs-on: ubuntu-latest          # 这个任务运行所需的环境
+  # 单次部署的工作描述
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️           # 第一步：获取源码
-        uses: actions/checkout@v4   # 使用的工具
- 
-      - name: Install and Build 🔧  # 第二步：下载依赖和构建
-        run: |
-          npm ci
-          npm run build
- 
-      - name: Deploy 🚀             # 第三步：部署
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
         with:
-          folder: dist              # 部署的目录
+          node-version: 20
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload dist folder
+          path: './dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
