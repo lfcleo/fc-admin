@@ -1,0 +1,1 @@
+import{h as a}from"./index.BD3XrQao.js";const n=t=>a.post("/apiv1/token",t),o=()=>a.get("/apiv1/menu"),p=()=>a.get("/apiv1/menuList"),s=t=>a.post("/apiv1/upload",t,{cancel:!1}),u=t=>a.post("/apiv1/upload",t,{cancel:!1});export{p as a,u as b,o as g,n as l,s as u};
