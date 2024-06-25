@@ -130,21 +130,9 @@ const isWechatLoginResult = ref(false);
 const appTitle = import.meta.env.VITE_VUE_APP_TITLE
 const appVersion = import.meta.env.VITE_VUE_APP_VERSION
 
-sysGlobalStore.$subscribe((mutation, state) => {
-    if (Array.isArray(mutation.events) == false) {
-        switch (mutation.events.key) {
-            case 'sysDark':
-                document.documentElement.classList[state.sysDark ? 'add' : 'remove']('dark');
-                break;
-
-            case 'sysLang':
-                locale.value = state.sysLang
-                break;
-
-            default:
-                break;
-        }
-    }
+sysGlobalStore.$subscribe((_mutation, state) => {
+    document.documentElement.classList[state.sysDark ? 'add' : 'remove']('dark');
+    locale.value = state.sysLang
 });
 
 onMounted(() => {
@@ -154,8 +142,8 @@ onMounted(() => {
     sysViewTagsStore.$reset()
     sysKeepAliveStore.$reset()
 
-    console.log('%c FC-Admin %c 高性能/精致/优雅后台管理框架', 'background:#666;color:#fff;border-radius:3px;', '')
-    console.log('%c FC-Admin %c 详细文档地址', 'background:#666;color:#fff;border-radius:3px;', '')
+    console.log('%c FC-Admin %c 高性能/精致/优雅后台管理框架。GitHub：https://github.com/lfcleo/fc-admin', 'background:#666;color:#fff;border-radius:3px;', '')
+    console.log('%c FC-Admin %c 详细文档地址：正在整理中...', 'background:#666;color:#fff;border-radius:3px;', '')
 })
 
 const configLang = (command: any) => {

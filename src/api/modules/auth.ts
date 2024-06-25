@@ -3,25 +3,25 @@ import { AuthRequestModel, AuthModel, MenuPermissionsModel } from "@/models/auth
 
 // 用户登录
 export const loginApi = (params: AuthRequestModel) => {
-    return http.post<AuthModel>('/apiv1/token', params);
+    return http.post<AuthModel>('/token', params);
 };
 
 // 获取菜单列表及权限
 export const getMenuApi = () => {
-    return http.get<MenuPermissionsModel>('/apiv1/menu');
+    return http.get<MenuPermissionsModel>('/menu');
 };
 
 // 获取菜单列表
 export const getMenuListApi = () => {
-    return http.get<MenuPermissionsModel>('/apiv1/menuList');
+    return http.get<MenuPermissionsModel>('/menuList');
 };
 
 // 图片上传(多图上传必须传{ cancel: false })
 export const uploadImg = (params: FormData) => {
-    return http.post<string>('/apiv1/upload', params, { cancel: false });
+    return http.post<string>('/upload', params, { cancel: false });
 };
 
 // 视频上传
 export const uploadVideo = (params: FormData) => {
-    return http.post<string>('/apiv1/upload', params, { cancel: false });
+    return http.post<string>('/upload', params, { cancel: false });
 };

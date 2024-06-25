@@ -159,36 +159,50 @@ function findActivePath(menu: Menu.MenuOptions, activePath: string, result: Menu
     return result;
 }
 
-sysGlobalStore.$subscribe((mutation, state) => {
-    if (Array.isArray(mutation.events) == false) {
-        switch (mutation.events.key) {
-            case 'sysLayout':
-                document.body.setAttribute('data-layout', state.sysLayout);
-                break;
+//使用watch 监听每一个对象
+const watchs = (() => {
+    return Object.keys(sysGlobalStore.$state).map((key: string) => {
+        return watch(() => sysGlobalStore.$state[key], (newVal) => {
+            switch (key) {
+                case 'sysLayout':
+                    document.body.setAttribute('data-layout', newVal);
+                    break;
 
-            case 'sysDark':
-                document.documentElement.classList[state.sysDark ? 'add' : 'remove']('dark');
-                break;
+                case 'sysDark':
+                    document.documentElement.classList[newVal ? 'add' : 'remove']('dark');
+                    break;
 
-            case 'sysLang':
-                locale.value = state.sysLang
-                break;
+                case 'sysLang':
+                    locale.value = newVal
+                    break;
 
-            case 'sysColor':
-                document.documentElement.style.setProperty('--el-color-primary', state.sysColor);
+                case 'sysColor':
+                    document.documentElement.style.setProperty('--el-color-primary', newVal);
 
-                for (let i = 1; i <= 9; i++) {
-                    document.documentElement.style.setProperty(`--el-color-primary-light-${i}`, colorTool.lighten(state.sysColor, i / 10));
-                }
+                    for (let i = 1; i <= 9; i++) {
+                        document.documentElement.style.setProperty(`--el-color-primary-light-${i}`, colorTool.lighten(newVal, i / 10));
+                    }
 
-                for (let i = 1; i <= 9; i++) {
-                    document.documentElement.style.setProperty(`--el-color-primary-dark-${i}`, colorTool.darken(state.sysColor, i / 10));
-                }
-                break;
+                    for (let i = 1; i <= 9; i++) {
+                        document.documentElement.style.setProperty(`--el-color-primary-dark-${i}`, colorTool.darken(newVal, i / 10));
+                    }
+                    break;
 
-            default:
-                break;
-        }
+                default:
+                    break;
+            }
+        }, { immediate: true })
+    })
+});
+
+let watchEffects = watchs();
+
+sysGlobalStore.$subscribe((_mutation, state) => {
+    if (Object.keys(state).length !== watchEffects.length) {
+        // 清空watch
+        watchEffects.forEach(e => e());
+        // 重新监听对象的每一个属性
+        watchEffects = watchs()
     }
 });
 

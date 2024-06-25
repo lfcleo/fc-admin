@@ -38,12 +38,13 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
             host: "0.0.0.0",
             port: Number(env.VITE_VUE_APP_PORT),
             open: true,
+            cors: true,
             proxy: {
                 //可配置多个代理
                 "/apiv1": {
                     target: env.VITE_VUE_APP_API_BASEURL,
-                    secure: false,   // 是否https接口
                     changeOrigin: true,
+                    ws: true,
                     rewrite: (path) => path.replace(/^\/apiv1/, ""),
                 }
             },
@@ -52,6 +53,16 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
             }
         },
         build: {
+            outDir: "dist",
+            minify: "esbuild",
+            // esbuild 打包更快，但是不能去除 console.log。terser打包慢，但能去除 console.log，正式环境建议使用
+            // minify: "terser",
+            // terserOptions: {
+            // 	compress: {
+            // 		drop_console: viteEnv.VITE_DROP_CONSOLE,
+            // 		drop_debugger: true
+            // 	}
+            // },
             rollupOptions: {
                 output: {
                     entryFileNames: `assets/[name].[hash].js`,
