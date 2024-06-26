@@ -12,8 +12,8 @@ dist
 dist-ssr
 *.local
 dist.zip
-.VSCodeCounter
-.github
+.VSCodeCounter/
+.github/
 
 # Editor directories and files
 .vscode/*
