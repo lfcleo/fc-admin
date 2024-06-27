@@ -91,7 +91,6 @@ const showClick = (row: Partial<TableListModel> = {}) => {
 
 // 删除选项
 const deleteClick = (row: Partial<TableListModel> = {}) => {
-    console.log(row.id)
     for (let i = 0; i < fcTableRef.value!.tableData.length; i++) {
         if (fcTableRef.value!.tableData[i].id === row.id) {
             // 使用 splice 方法从数组中删除对象  

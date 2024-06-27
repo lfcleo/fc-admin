@@ -7,10 +7,9 @@
                     <div class="tip-body">
                         <div class="tip-title">{{ getTipTitle() }}</div>
                         <div class="tip-desc">
-                            <a target="_balnk" href="https://gitee.com/lfcleo/fc-admin"> FC-Admin</a>，基于
-                            <a target="_balnk" href="https://gitee.com/lolicode/scui"> SCUI </a>
-                            开发。使用了最新的Vue3、 Vite、Element-Plus、TypeScript、Pinia等主流技术开发。从零搭建的一套后台管理框架。
-                            <a target="_balnk" href="https://gitee.com/lfcleo/fc-admin"> 文档地址点击这里 </a>。
+                            <a target="_balnk" href="https://github.com/lfcleo/fc-admin"> FC-Admin</a>
+                            使用了最新的Vue3、 Vite、Element-Plus、TypeScript、Pinia等主流技术开发。
+                            <a target="_balnk" href="https://github.com/lfcleo/fc-admin"> 文档正在整理中... </a>。
                         </div>
                     </div>
                 </el-card>

@@ -34,7 +34,7 @@ import { useRoute } from 'vue-router';
 
 defineProps<{ menu: Menu.MenuOptions[] }>();
 const route = useRoute();
-const appTitle = import.meta.env.VITE_VUE_APP_TITLE
+const appTitle = import.meta.env.VITE_VUE_TITLE
 const nav = ref(false);
 const mobileNavBoxRef = ref<InstanceType<typeof ElDrawer> | null>(null);
 

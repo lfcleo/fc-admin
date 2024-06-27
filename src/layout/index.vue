@@ -123,7 +123,6 @@ function findOutermostByPath(menuOptions: Menu.MenuOptions[], activePath: string
     for (const route of menuOptions) {
         // 检查当前路径是否匹配
         if (route.path === activePath) {
-            // console.log(route)
             viewTag.value = route
             return route;
         }

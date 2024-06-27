@@ -30,7 +30,7 @@
             </div>
         </div>
         <Side-m :menu="menuList" v-if="sysGlobalStore.sysIsMobile"></Side-m>
-        <div class="aminui-body el-container">
+        <div class="aminui-body">
             <Topbar v-if="!sysGlobalStore.sysIsMobile"></Topbar>
             <Tags v-if="!sysGlobalStore.sysIsMobile && sysGlobalStore.sysLayoutTags">
             </Tags>
@@ -64,7 +64,7 @@ import Tags from "../components/tags.vue";
 const route = useRoute()
 const sysGlobalStore = useSysGlobalStore()
 const sysKeepAliveStore = useSysKeepAliveStore()
-const appTitle = import.meta.env.VITE_VUE_APP_TITLE
+const appTitle = import.meta.env.VITE_VUE_TITLE
 
 // 注入刷新页面方法
 const isRouterShow = ref(true);

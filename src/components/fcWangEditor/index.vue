@@ -104,14 +104,14 @@ props.editorConfig.MENU_CONF!["uploadImage"] = {
             const { data } = await api(formData);
             insertFn(data);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     }
 };
 
 // 图片上传前判断
-const uploadImgValidate = (file: File): boolean => {
-    console.log(file);
+const uploadImgValidate = (_file: File): boolean => {
+    // console.log(file);
     return true;
 };
 
@@ -132,14 +132,14 @@ props.editorConfig.MENU_CONF!["uploadVideo"] = {
             const { data } = await api(formData);
             insertFn(data);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     }
 };
 
 // 视频上传前判断
-const uploadVideoValidate = (file: File): boolean => {
-    console.log(file);
+const uploadVideoValidate = (_file: File): boolean => {
+    // console.log(file);
     return true;
 };
 

@@ -129,7 +129,7 @@ onMounted(() => {
             avatar: "img/avatar.jpg",
             title: "用户1",
             describe: "如果喜欢就点个星星支持一下哦",
-            link: "https://gitee.com/lfcleo/fc-admin",
+            link: "http://github.com/lfcleo/fc-admin",
             time: "5分钟前"
         },
         {
@@ -137,8 +137,8 @@ onMounted(() => {
             type: 'user',
             avatar: "img/avatar2.gif",
             title: "用户2",
-            describe: "点进去Gitee获取最新开源版本",
-            link: "https://gitee.com/lfcleo/fc-admin",
+            describe: "点进去Github/Gitee获取最新开源版本",
+            link: "http://github.com/lfcleo/fc-admin",
             time: "14分钟前"
         },
         {
@@ -146,9 +146,9 @@ onMounted(() => {
             type: 'system',
             avatar: "img/logo.png",
             title: "感谢登录FC-Admin",
-            describe: "Vue 3 + Vue-Router 4.0 + ElementPlus + Axios 后台管理系统。",
+            describe: "Vue 3 + ElementPlus + Pinia 后台管理系统。",
             link: "https://gitee.com/lfcleo/fc-admin",
-            time: "2020年7月24日"
+            time: "2024年6月22日"
         }
     ]
 })

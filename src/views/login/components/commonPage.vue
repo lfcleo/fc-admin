@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 defineProps<{ title: string }>();
-const appTitle = import.meta.env.VITE_VUE_APP_TITLE
+const appTitle = import.meta.env.VITE_VUE_TITLE
 </script>
 
 <style></style>

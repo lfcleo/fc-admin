@@ -190,7 +190,7 @@ const fromModel2 = ref({
 const ruleFormRef = ref<FormInstance>();
 const submit = () => {
     ruleFormRef.value!.validate(valid => {
-        console.log(valid);
+        console.log("校验规则结果：", valid);
     });
 };
 </script>

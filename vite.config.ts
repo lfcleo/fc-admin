@@ -1,4 +1,4 @@
-import { type UserConfigExport, type ConfigEnv, loadEnv } from "vite";
+import { type UserConfigExport, type ConfigEnv, loadEnv, ProxyOptions } from "vite";
 import vue from '@vitejs/plugin-vue'
 import { resolve } from "path";
 
@@ -36,18 +36,10 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
         },
         server: {
             host: "0.0.0.0",
-            port: Number(env.VITE_VUE_APP_PORT),
+            port: Number(env.VITE_VUE_PORT),
             open: true,
             cors: true,
-            proxy: {
-                //可配置多个代理
-                "/apiv1": {
-                    target: env.VITE_VUE_APP_API_BASEURL,
-                    changeOrigin: true,
-                    ws: true,
-                    rewrite: (path) => path.replace(/^\/apiv1/, ""),
-                }
-            },
+            proxy: createProxy(JSON.parse(env.VITE_PROXY || '[]')),
             warmup: {
                 clientFiles: ["./index.html", "./src/{views,components}/*"]
             }
@@ -74,3 +66,32 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
         }
     };
 };
+
+
+type ProxyItem = [string, string];
+
+type ProxyList = ProxyItem[];
+
+type ProxyTargetList = Record<string, ProxyOptions>;
+/**
+ * 创建代理，用于解析 .env.development 代理配置
+ * @param list
+ */
+function createProxy(list: ProxyList = []) {
+    const ret: ProxyTargetList = {};
+    for (const [prefix, target] of list) {
+        const httpsRE = /^https:\/\//;
+        const isHttps = httpsRE.test(target);
+
+        // https://github.com/http-party/node-http-proxy#options
+        ret[prefix] = {
+            target: target,
+            changeOrigin: true,
+            ws: true,
+            rewrite: path => path.replace(new RegExp(`^${prefix}`), ""),
+            // https is require secure=false
+            ...(isHttps ? { secure: false } : {})
+        };
+    }
+    return ret;
+}

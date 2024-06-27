@@ -6,10 +6,10 @@ import { DepartmentModel } from "@/models/departmentModel"
 
 // 获取表格列表
 export const getTabelDataApi = (params: RequestTableParams) => {
-    return http.get<ResultPage<TableListModel>>('/table', params);
+    return http.get<ResultPage<TableListModel>>('/v1/table', params);
 };
 
 // 获取部门列表
 export const getDepartmentDataApi = (params: RequestTableParams) => {
-    return http.get<ResultPage<DepartmentModel>>('/department', params, { cancel: false });
+    return http.get<ResultPage<DepartmentModel>>('/v1/department', params, { cancel: false });
 };

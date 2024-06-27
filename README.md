@@ -6,7 +6,7 @@ FC-Admin 是一个中后台前端解决方案，基于VUE3，Vite，ElementPlus�
 
 | 类型 | 链接 |
 | -------- | -------- |
-| 演示地址  | https://lfcleo.github.io/fc-admin/#/ |
+| 演示地址  | http://121.196.239.128:1234 |
 | 文档地址  | 正在整理中... |
 
 

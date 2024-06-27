@@ -127,8 +127,8 @@ const lang = ref([
 const WechatLoginCode = ref("");
 const showWechatLogin = ref(false);
 const isWechatLoginResult = ref(false);
-const appTitle = import.meta.env.VITE_VUE_APP_TITLE
-const appVersion = import.meta.env.VITE_VUE_APP_VERSION
+const appTitle = import.meta.env.VITE_VUE_TITLE
+const appVersion = import.meta.env.VITE_VUE_VERSION
 
 sysGlobalStore.$subscribe((_mutation, state) => {
     document.documentElement.classList[state.sysDark ? 'add' : 'remove']('dark');

@@ -18,7 +18,7 @@
         </div>
     </header>
     <section class="aminui-wrapper">
-        <div class="aminui-body el-container">
+        <div class="aminui-body">
             <Tags v-if="!sysGlobalStore.sysIsMobile && sysGlobalStore.sysLayoutTags">
             </Tags>
             <div class="adminui-main" id="adminui-main">
@@ -50,7 +50,7 @@ import Tags from "../components/tags.vue";
 const route = useRoute()
 const sysGlobalStore = useSysGlobalStore()
 const sysKeepAliveStore = useSysKeepAliveStore()
-const appTitle = import.meta.env.VITE_VUE_APP_TITLE
+const appTitle = import.meta.env.VITE_VUE_TITLE
 
 // 注入刷新页面方法
 const isRouterShow = ref(true);

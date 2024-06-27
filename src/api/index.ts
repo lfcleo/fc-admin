@@ -9,7 +9,7 @@ import router from "@/router";
 const publicHeaders = {}
 
 const config = {
-    baseURL: '/apiv1/',
+    baseURL: import.meta.env.VITE_VUE_API_BASEURL as string,
     // 设置超时时间
     timeout: import.meta.env.VITE_TIMEOUT as number,
     // 跨域时候允许携带凭证

@@ -42,7 +42,7 @@
             </div>
         </div>
         <Side-m :menu="menuList" v-if="sysGlobalStore.sysIsMobile"></Side-m>
-        <div class="el-container aminui-body">
+        <div class="aminui-body">
             <Topbar>
                 <userbar></userbar>
             </Topbar>
@@ -93,11 +93,3 @@ const showMenu = (item: Menu.MenuOptions) => {
 }
 
 </script>
-
-<style>
-.aminui-body {
-    flex: 1;
-    display: flex;
-    flex-flow: column;
-}
-</style>
