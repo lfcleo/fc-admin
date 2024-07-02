@@ -64,12 +64,15 @@ class RequestHttp {
                 // 登录失效,提示用户后跳转到登录页面
                 if (data.code == 401) {
                     if (!MessageBox_401_show) {
+                        useAuthStore().$reset();
                         MessageBox_401_show = true
                         ElMessageBox.confirm('当前用户已被登出或无权限访问当前资源，请尝试重新登录后再操作。', '无权限访问', {
                             type: 'error',
                             closeOnClickModal: false,
                             center: true,
                             confirmButtonText: '重新登录',
+                            showClose: false,
+                            showCancelButton: false,
                             beforeClose: (_action, _instance, done) => {
                                 MessageBox_401_show = false
                                 done()

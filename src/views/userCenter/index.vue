@@ -2,7 +2,7 @@
     <el-container class="page-user">
         <el-aside style="width: 240px;">
             <el-container>
-                <el-header style="height: auto;display: block;">
+                <el-header style="height: auto;display: block;padding-top: 20px;">
                     <div class="user-info-top">
                         <el-avatar :size="70" src="/img/avatar.jpg"></el-avatar>
                         <h2>{{ authStore.userInfo.userName }}</h2>

@@ -12,6 +12,14 @@ export const systemRoutes: RouteRecordRaw[] = [
         redirect: import.meta.env.VITE_DASHBOARD_URL || '/dashboard',
     },
     {
+        path: "/404",
+        component: () => import('@/layout/other/404.vue'),
+    },
+    {
+        path: "/500",
+        component: () => import('@/layout/other/500.vue'),
+    },
+    {
         path: "/:pathMatch(.*)*",
         component: () => import('@/layout/other/404.vue'),
     }

@@ -9,9 +9,9 @@
     <el-form :inline="true" :model="form" style="width: 100%;">
         <el-row>
             <el-col :sm="12" :md="8" :lg="6" v-for="(item, index) in formItems.slice(
-                0,
-                conditionFold ? showItemLength : formItems.length
-            )" :key="index">
+        0,
+        conditionFold ? showItemLength : formItems.length
+    )" :key="index">
                 <el-form-item :label="item.label + '：'" :prop="`[${index}]value`">
                     <template v-if="item.type == 'input'">
                         <el-input v-model="form[item.field]" :placeholder="item.placeholder || '请输入' + item.label"
@@ -57,7 +57,7 @@ import { ref } from 'vue';
 import { ElInput } from 'element-plus';
 
 // 查询组件类型,输入框/下拉选择器/日期选择器/日期范围选择器
-type queryItemType = "input" | "select" | "date" | "dateTime";
+type queryItemType = "input" | "select" | "date";
 
 interface queryItemModel {
     type: queryItemType,

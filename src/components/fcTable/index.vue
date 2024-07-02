@@ -109,6 +109,7 @@ const emit = defineEmits<{
 }>();
 
 onMounted(() => {
+    console.log(props.pagination)
     dragSort();
     if (props.requestApi) {
         getTableList()

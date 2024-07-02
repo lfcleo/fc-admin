@@ -128,7 +128,7 @@ interface UploadFileProps {
     width?: string;                 // 组件宽度 ==> 非必传（默认为 150px）
     borderRadius?: string;          // 组件边框圆角 ==> 非必传（默认为 8px）
     cropper?: boolean;              // 是否启用裁剪图片 ==> 非必传，默认为false
-    cropperOption?: CropperOption;  //裁剪图片配置选项
+    cropperOption?: CropperOption;  // 裁剪图片配置选项
     comporess?: boolean;            // 是否启用图片压缩 ===> 非必传，默认为false
     comporessQuality?: number       // 图片压缩质量 取0-1之间 ===> 非必传，默认0.4
 }

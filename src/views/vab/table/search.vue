@@ -34,7 +34,6 @@ import { TableListModel } from "@/models/tableModel"
 import { getTabelDataApi } from '@/api/modules/table';
 import { ElMessageBox } from "element-plus";
 
-
 // 查询器配置
 const formItems = ref<any>([
     {
@@ -52,11 +51,11 @@ const formItems = ref<any>([
 // 表格配置项
 const columns = reactive<ColumnProps<TableListModel>[]>([
     { type: "selection", fixed: "left", width: 70 },
-    { prop: "id", label: "ID", width: 180 },
-    { prop: "name", label: "名称", width: 280 },
+    { prop: "id", label: "ID", width: 100 },
+    { prop: "name", label: "名称", width: 180 },
     { prop: "status", label: "状态", width: 280 },
-    { prop: "created_at", label: "创建时间", width: 280 },
-    { prop: "options", label: "操作", fixed: "right" },
+    { prop: "created_at", label: "创建时间" },
+    { prop: "options", label: "操作", fixed: "right", width: 280 },
 ]);
 // fcTabel 实例
 const fcTableRef = ref<FcTableInstance>();

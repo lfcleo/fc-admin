@@ -25,3 +25,8 @@ export const uploadImg = (params: FormData) => {
 export const uploadVideo = (params: FormData) => {
     return http.post<string>('/v1/upload', params, { cancel: false });
 };
+
+// 退出登录
+export const logoutApi = () => {
+    return http.post('/v1/logout');
+};

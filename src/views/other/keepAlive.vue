@@ -13,7 +13,7 @@
 <script setup lang='ts'>
 import { onMounted } from 'vue'
 
-//使用keep-alive必须要填写name,且与menu中的name保持一致
+//使用keep-alive必须要填写name,且与路由中的name保持一致
 defineOptions({
     name: "otherKeepAlive"
 })
