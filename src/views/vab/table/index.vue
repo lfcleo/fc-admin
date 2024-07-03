@@ -63,7 +63,7 @@ const columns = reactive<ColumnProps<TableListModel>[]>([
     { prop: "id", label: "ID", width: 100 },
     { prop: "name", label: "名称", width: 200 },
     { prop: "status", label: "状态", width: 200 },
-    { prop: "created_at", label: "创建时间", width: 200 },
+    { prop: "created_at", label: "创建时间" },
     { prop: "options", label: "操作", fixed: "right", width: 280 },
 ]);
 // fcTabel 实例
