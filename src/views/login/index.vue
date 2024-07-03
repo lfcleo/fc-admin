@@ -143,7 +143,7 @@ onMounted(() => {
     sysKeepAliveStore.$reset()
 
     console.log('%c FC-Admin %c 高性能/精致/优雅后台管理框架。GitHub：https://github.com/lfcleo/fc-admin', 'background:#666;color:#fff;border-radius:3px;', '')
-    console.log('%c FC-Admin %c 详细文档地址：正在整理中...', 'background:#666;color:#fff;border-radius:3px;', '')
+    console.log('%c FC-Admin %c 详细文档地址：http://121.196.239.128:2234', 'background:#666;color:#fff;border-radius:3px;', '')
 })
 
 const configLang = (command: any) => {

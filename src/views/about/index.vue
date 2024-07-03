@@ -24,7 +24,7 @@
                                 Github </el-link>
                         </el-descriptions-item>
                         <el-descriptions-item label="文档地址" label-align="left">
-                            <el-link type="primary" href="https://github.com/lfcleo/fc-admin" target="_blank"> 正在整理中...
+                            <el-link type="primary" href="http://121.196.239.128:2234" target="_blank"> 文档地址
                             </el-link>
                         </el-descriptions-item>
                         <el-descriptions-item label="预览地址" label-align="left">
