@@ -9,7 +9,7 @@
                         <div class="tip-desc">
                             <a target="_balnk" href="https://github.com/lfcleo/fc-admin"> FC-Admin</a>
                             使用了最新的Vue3、 Vite、Element-Plus、TypeScript、Pinia等主流技术开发。
-                            <a target="_balnk" href="http://121.196.239.128:2234"> 文档地址 </a>。
+                            <a target="_balnk" href="https://doc.fcadmin.fun"> 文档地址 </a>。
                         </div>
                     </div>
                 </el-card>

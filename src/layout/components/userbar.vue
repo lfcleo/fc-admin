@@ -129,7 +129,7 @@ onMounted(() => {
             avatar: "img/avatar.jpg",
             title: "用户1",
             describe: "如果喜欢就点个星星支持一下哦",
-            link: "http://github.com/lfcleo/fc-admin",
+            link: "https://github.com/lfcleo/fc-admin",
             time: "5分钟前"
         },
         {
@@ -138,7 +138,7 @@ onMounted(() => {
             avatar: "img/avatar2.gif",
             title: "用户2",
             describe: "点进去Github/Gitee获取最新开源版本",
-            link: "http://github.com/lfcleo/fc-admin",
+            link: "https://github.com/lfcleo/fc-admin",
             time: "14分钟前"
         },
         {

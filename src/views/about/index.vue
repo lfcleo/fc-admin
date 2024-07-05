@@ -24,11 +24,11 @@
                                 Github </el-link>
                         </el-descriptions-item>
                         <el-descriptions-item label="文档地址" label-align="left">
-                            <el-link type="primary" href="http://121.196.239.128:2234" target="_blank"> 文档地址
+                            <el-link type="primary" href="https://doc.fcadmin.fun" target="_blank"> 文档地址
                             </el-link>
                         </el-descriptions-item>
                         <el-descriptions-item label="预览地址" label-align="left">
-                            <el-link type="primary" href="http://121.196.239.128:1234" target="_blank"> 预览地址 </el-link>
+                            <el-link type="primary" href="https://www.fcadmin.fun" target="_blank"> 预览地址 </el-link>
                         </el-descriptions-item>
                     </el-descriptions>
                 </template>

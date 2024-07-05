@@ -70,7 +70,7 @@ const getData = () => {
         "id": "101",
         "taskName": "系统日志导出",
         "type": "export",
-        "result": "http://www.baidu.com",
+        "result": "https://www.baidu.com",
         "state": "1",
         "stateName": "完成",
         "createDate": "2023-12-24T19:33:03.345+08:00"
