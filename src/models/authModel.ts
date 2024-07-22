@@ -6,8 +6,8 @@ export interface AuthRequestModel {
 
 //Auth返回数据模型，返回token和用户信息
 export interface AuthModel {
-    token: string,
-    userInfo: UserInfoModel
+    token: string;
+    userInfo: UserInfoModel;
 }
 
 /**
@@ -24,8 +24,8 @@ export interface UserInfoModel {
  * 动态路由和权限模型
  */
 export interface MenuPermissionsModel {
-    menu: Menu.MenuOptions[],
-    permissions: string[]
+    menu: Menu.MenuOptions[];
+    permissions: string[];
 }
 
 /**

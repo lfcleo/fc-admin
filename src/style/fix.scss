@@ -83,7 +83,8 @@
 .el-footer {
     background: #fff;
     border-top: 1px solid var(--el-border-color-light);
-    padding: 12px 15px;
+    padding: 13px 15px !important;
+    height: 56px !important;
 }
 
 .el-main {

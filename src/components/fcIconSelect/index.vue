@@ -159,7 +159,7 @@ const data = computed(() => {
     width: 80px;
     height: 80px;
     margin: 5px;
-    padding: 20px;
+    padding: 25px;
     vertical-align: top;
     transition: all 0.1s;
     border-radius: 4px;

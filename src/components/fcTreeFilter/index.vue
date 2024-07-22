@@ -6,12 +6,12 @@
 * @LastEditTime: 2024-06-11 13:01:32
 -->
 <template>
-    <div class="card filter">
-        <h4 v-if="title" class="title sle">
+    <div class="card filter" :style="{ border: border ? `1px solid var(--el-border-color-light)` : `0px` }">
+        <h4 v-if="title" class="title">
             {{ title }}
         </h4>
-        <el-input v-model="filterText" placeholder="输入关键字进行过滤" clearable />
-        <el-scrollbar :style="{ height: title ? `calc(100% - 95px)` : `calc(100% - 56px)` }">
+        <el-input v-if="showSearch" v-model="filterText" placeholder="输入关键字进行过滤" clearable />
+        <el-scrollbar :style="{ height: title || showSearch ? `calc(100% - 95px)` : `100%` }" v-loading="loading">
             <el-tree ref="treeRef" default-expand-all :node-key="name" :data="multiple ? treeData : treeAllData"
                 :show-checkbox="multiple" :check-strictly="false" :current-node-key="!multiple ? selected : ''"
                 :highlight-current="!multiple" :expand-on-click-node="false" :check-on-click-node="multiple"
@@ -43,15 +43,21 @@ interface TreeFilterProps {
     requestApi?: (data?: any) => Promise<any>;  // 请求分类数据的 api ==> 非必传
     data?: { [key: string]: any }[];            // 分类数据，如果有分类数据，则不会执行 api 请求 ==> 非必传
     title?: string;                             // treeFilter 标题 ==> 非必传
-    name?: string;                                // 选择的id ==> 非必传，默认为 “id”
+    border?: boolean;                           // 是否显示边框
+    name?: string;                              // 选择的id ==> 非必传，默认为 “id”
     label?: string;                             // 显示的label ==> 非必传，默认为 “label”
     multiple?: boolean;                         // 是否为多选 ==> 非必传，默认为 false
     defaultValue?: any;                         // 默认选中的值 ==> 非必传
+    showSearch?: boolean;                       // 是否显示搜索框 ==> 默认不显示
+    showAll?: boolean;                          // 是否显示选择全部 ==> 默认显示
 }
 const props = withDefaults(defineProps<TreeFilterProps>(), {
     name: "id",
     label: "label",
-    multiple: false
+    border: false,
+    multiple: false,
+    showSearch: false,
+    showAll: true,
 });
 
 const defaultProps = {
@@ -59,14 +65,18 @@ const defaultProps = {
     label: props.label
 };
 
+const loading = ref(false)
 const treeRef = ref<InstanceType<typeof ElTree>>();
 const treeData = ref<{ [key: string]: any }[]>([]);
 const treeAllData = ref<{ [key: string]: any }[]>([]);
 
 const selected = ref();
 const setSelected = () => {
-    if (props.multiple) selected.value = Array.isArray(props.defaultValue) ? props.defaultValue : [props.defaultValue];
-    else selected.value = typeof props.defaultValue === "string" ? props.defaultValue : "";
+    if (props.multiple) {
+        selected.value = Array.isArray(props.defaultValue) ? props.defaultValue : [props.defaultValue];
+    } else {
+        selected.value = typeof props.defaultValue === "number" ? props.defaultValue : 0;
+    }
 };
 
 onBeforeMount(() => {
@@ -78,9 +88,19 @@ onBeforeMount(() => {
 
 // 获取数据
 const getData = async () => {
-    const { data } = await props.requestApi!();
-    treeData.value = data;
-    treeAllData.value = [{ id: "0", [props.label]: "全部" }, ...data];
+    try {
+        loading.value = true
+        const { data } = await props.requestApi!();
+        treeData.value = data;
+        if (props.showAll) {
+            treeAllData.value = [{ id: 0, [props.label]: "全部" }, ...data];
+        } else {
+            treeAllData.value = [...data];
+        }
+        loading.value = false
+    } catch (error) {
+        loading.value = false
+    }
 }
 
 // 使用 nextTick 防止打包后赋值不生效，开发环境是正常的
@@ -95,7 +115,11 @@ watch(
     () => {
         if (props.data?.length) {
             treeData.value = props.data;
-            treeAllData.value = [{ id: "0", [props.label]: "全部" }, ...props.data];
+            if (props.showAll) {
+                treeAllData.value = [{ id: 0, [props.label]: "全部" }, ...props.data];
+            } else {
+                treeAllData.value = [...props.data];
+            }
         }
     },
     { deep: true, immediate: true }
@@ -146,17 +170,15 @@ defineExpose({ treeData, treeAllData, treeRef, getData });
     padding: 20px;
     overflow-x: hidden;
     background-color: var(--el-bg-color);
-    border: 1px solid var(--el-border-color-light);
     border-radius: 6px;
     box-shadow: 0 0 12px rgb(0 0 0 / 5%);
 }
 
 .filter {
     box-sizing: border-box;
-    // width: 220px;
     height: 100%;
     padding: 18px;
-    margin-right: 10px;
+    // margin-right: 10px;
 
     .title {
         margin: 0 0 15px;
@@ -183,11 +205,6 @@ defineExpose({ treeData, treeAllData, treeRef, getData });
         :deep(.el-tree--highlight-current) {
             .el-tree-node.is-current>.el-tree-node__content {
                 background-color: var(--el-color-primary-light-7);
-
-                // .el-tree-node__label,
-                // .el-tree-node__expand-icon {
-                //     color: #fff;
-                // }
 
                 .is-leaf {
                     color: transparent;

@@ -14,7 +14,6 @@ declare namespace Menu {
         children?: MenuOptions[];
     }
     interface MetaProps {
-
         /** 菜单和面包屑对应的图标 */
         icon?: string;
         /** 路由标题 (用作 document.title || 菜单的名称) */
@@ -22,7 +21,7 @@ declare namespace Menu {
         /** 菜单栏高亮,默认激活菜单的 index */
         active?: string;
         /** 打开外部链接的url地址 */
-        isLink?: true;
+        isLink?: boolean;
         /** 是否在菜单中隐藏 */
         isHide?: boolean;
         /** 菜单是否全屏 (示例：数据大屏页面) */

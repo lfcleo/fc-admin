@@ -1,15 +1,22 @@
 <template>
     <el-container>
-        <fc-tree-filter label="name" title="树形筛选器(单选)" :request-api="getDepartmentDataApi"
-            :default-value="treeFilterValue.departmentId" @change="changeTreeFilter">
+        <fc-tree-filter show-search label="name" :tree-props="treeProps" title="树形筛选器(单选)"
+            :request-api="getDepartmentDataApi" :default-value="treeFilterValue.departmentId"
+            @change="changeTreeFilter">
         </fc-tree-filter>
 
-        <fc-tree-filter title="树形筛选器(多选)" multiple label="name" :request-api="getDepartmentDataApi"
-            :default-value="treeFilterValue1.departmentId" @change="changeTreeFilter1">
+        <div style="width: 10px;"></div>
+
+        <fc-tree-filter label="name" title="树形筛选器(多选)" multiple :border="true" :tree-props="treeProps"
+            :request-api="getDepartmentDataApi" :default-value="treeFilterValue1.departmentId"
+            @change="changeTreeFilter1">
         </fc-tree-filter>
 
-        <fc-tree-filter ref="fcTreeFilterRef" label="name" title="树形筛选器(插槽)" :request-api="getDepartmentDataApi"
-            :default-value="treeFilterValue2.departmentId" @change="changeTreeFilter2">
+        <div style="width: 10px;"></div>
+
+        <fc-tree-filter ref="fcTreeFilterRef" label="name" show-search :tree-props="treeProps" title="树形筛选器(插槽)"
+            :request-api="getDepartmentDataApi" :default-value="treeFilterValue2.departmentId"
+            @change="changeTreeFilter2">
             <template #option="scope" class="custom-tree-node">
                 <el-button-group>
                     <el-button type="success" icon="View" size="small" @click.stop="showClick(scope)" />
@@ -18,12 +25,14 @@
             </template>
         </fc-tree-filter>
 
-        <el-card>
+        <div style="width: 10px;"></div>
+
+        <el-main style="background-color: #fff;">
             <div>查看数据使用：treeData</div>
             <div>查看全部数据使用：treeAllData</div>
             <div>使用el-tree的ref使用：treeRef</div>
             <div>动态数据重新获取数据：getData()</div>
-        </el-card>
+        </el-main>
     </el-container>
 </template>
 
@@ -31,6 +40,11 @@
 import { ref, reactive } from 'vue'
 import { ElMessage } from "element-plus";
 import { getDepartmentDataApi } from '@/api/modules/table';
+import FcTreeFilter from '@/components/fcTreeFilter/index.vue'
+
+const treeProps = {
+    label: 'name'   //指定显示字段为name
+}
 
 const treeFilterValue = reactive({ departmentId: "1" });
 const changeTreeFilter = (val: string) => {
@@ -44,7 +58,7 @@ const changeTreeFilter1 = (val: string[]) => {
     treeFilterValue1.departmentId = val;
 };
 
-const fcTreeFilterRef = ref()
+const fcTreeFilterRef = ref<InstanceType<typeof FcTreeFilter>>()    // fcTreeFilter 实例
 const treeFilterValue2 = reactive({ departmentId: "1" });
 const changeTreeFilter2 = (val: string) => {
     ElMessage.success(`你选择了 id 为 ${val} 的数据`);
@@ -55,14 +69,14 @@ const showClick = (scope: any) => {
 }
 const deleteClick = (scope: any) => {
     if (scope.row.data.id == "0") {
-        fcTreeFilterRef.value.treeAllData = []
+        fcTreeFilterRef.value!.treeAllData = []
         return
     }
     const parent = scope.row.node.parent
     const children = parent.data.children || parent.data
     const index = children.findIndex((d: any) => d.id === scope.row.data.id)
     children.splice(index, 1)
-    fcTreeFilterRef.value.treeAllData = [...fcTreeFilterRef.value.treeAllData]
+    fcTreeFilterRef.value!.treeAllData = [...fcTreeFilterRef.value!.treeAllData]
 }
 </script>
 

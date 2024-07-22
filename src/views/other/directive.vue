@@ -12,7 +12,7 @@
             <el-button v-auths="['user.no', 'user.add']" type="primary">v-auths="['user.no','user.add']"</el-button>
             <el-button v-auths-all="['list.add', 'user.edit']" type="primary">v-auths-all="'list.add',
                 'user.edit'"</el-button>
-            <el-alert title="v-auth指令 是$AUTH的语法糖, 原先需要使用v-if来判断是否有权限, 判断单项权限，如果满足就判断有权限，不满足会隐藏。"
+            <el-alert title="v-auth指令 原先需要使用v-if来判断是否有权限, 判断单项权限，如果满足就判断有权限，不满足会隐藏。"
                 style="margin-top: 20px;"></el-alert>
             <el-alert title="v-auths指令 传入数组,有一项满足就判断有权限，不满足会隐藏。" style="margin-top: 20px;"></el-alert>
             <el-alert title="v-auths-all指令 传入数组,必须全满足才有权限，比如user.no没有这个权限，加到这里的话就表示不全部满足，会隐藏。"
@@ -24,7 +24,7 @@
         <el-card shadow="never" header="v-role 角色权限控制(根据本地存储userinfo.role判断)" style="margin-top: 20px;">
             <el-button v-role="['admin']" type="primary">v-role="'admin'"</el-button>
             <el-button v-role="['ALL', 'admin']" type="primary">v-role="['ALL','admin']"</el-button>
-            <el-alert title="v-role指令 是$ROLE的语法糖, 原理是判断是否含有用户所在的角色别名" style="margin-top: 20px;"></el-alert>
+            <el-alert title="v-role指令 原理是判断是否含有用户所在的角色别名" style="margin-top: 20px;"></el-alert>
             <el-alert title="本地存储的userinfo.role包含有ALL，则v-role指令会显示。ALL为最高权限。" style="margin-top: 20px;"></el-alert>
         </el-card>
 

@@ -5,9 +5,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-        <%= VITE_VUE_TITLE %>
-    </title>
+    <title>FC-Admin</title>
 </head>
 
 <body>
@@ -136,6 +134,9 @@
         } else if (indexOf(userAgent, "Safari")) {
             browerInfo.type = "Safari"
             browerInfo.version = userAgent.match(/Safari\/([\d.]+)/)[1]
+        } else if (indexOf(userAgent, "MicroMessenger")) {
+            browerInfo.type = "MicroMessenger"
+            browerInfo.version = userAgent.match(/MicroMessenger\/([\d.]+)/)[1]
         }
         return browerInfo
     }
@@ -146,9 +147,10 @@
         var minVer = {
             "Chrome": 71,
             "Firefox": 65,
-            "Safari": 12,
+            "Safari": 14,
             "Edg": 97,
-            "IE": 999
+            "IE": 999,
+            "MicroMessenger": 0,
         }
         var browerInfo = getBrowerInfo()
         var materVer = browerInfo.version.split('.')[0]

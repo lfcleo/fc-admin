@@ -48,8 +48,7 @@ export const useTable = (
                 pageSize: state.pageable.pageSize
             };
         },
-        set: (newVal: any) => {
-            console.log("我是分页更新之后的值", newVal);
+        set: (_newVal: any) => {
         }
     });
 

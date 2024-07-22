@@ -216,10 +216,7 @@ const clearCache = () => {
         type: 'info',
     }).then(() => {
         sysGlobalStore.$reset()
-        console.log(sysGlobalStore.sysLang)
         window.location.reload()
-        // sysViewTagsStore.$reset()
-        // sysKeepAliveStore.$reset()
     }).catch(() => {
         //取消
     })
