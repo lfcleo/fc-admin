@@ -34,7 +34,7 @@
                 </div>
             </el-header>
             <el-main class="nopadding">
-                <fc-table ref="fcTableRef" :border="false" :indent="20" :requestApi="getDictInfoApi" :columns="columns">
+                <fc-table ref="fcTableRef" :indent="20" :requestApi="getDictInfoApi" :columns="columns">
                     <!-- 表格操作 -->
                     <template #options="scope">
                         <el-button type="primary" icon="Edit" link @click="infoClick(scope.row)">编辑</el-button>

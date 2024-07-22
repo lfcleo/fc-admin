@@ -11,7 +11,7 @@
         </el-header>
         <el-main class="nopadding">
             <fc-table stripe ref="fcTableRef" rowKey="name" :requestApi="getTableList" :columns="columns"
-                :border="false" @darg-sort="sortTable">
+                @darg-sort="sortTable">
                 <!-- 展开行内容 -->
                 <template #expand="scope">
                     <div>这是展开行内容，这行的数据是{{ scope.row }}</div>

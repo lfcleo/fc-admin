@@ -1,6 +1,6 @@
 <template>
     <el-card shadow="never" header="近7天操作记录">
-        <fc-table ref="fcTableRef" rowKey="name" :data="data" :columns="columns" :border="false">
+        <fc-table ref="fcTableRef" rowKey="name" :data="data" :columns="columns">
             <template #code="scope">
                 <el-tag>{{ scope.row.code }}</el-tag>
             </template>

@@ -5,8 +5,7 @@
             <el-alert title="使用fcTable展示了动态路由菜单，配置和关于是静态路由没有展示。" type="success"></el-alert>
         </el-header>
         <el-main class="nopadding">
-            <fc-table ref="fcTableRef" rowKey="name" :border="false" :indent="20" :requestApi="getMenuListApi"
-                :columns="columns">
+            <fc-table ref="fcTableRef" rowKey="name" :indent="20" :requestApi="getMenuListApi" :columns="columns">
                 <!-- 菜单标题 -->
                 <template #meta.title="scope">
                     <span>{{ scope.row.meta.title }}</span>

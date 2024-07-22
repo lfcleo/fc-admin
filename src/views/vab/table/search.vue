@@ -8,7 +8,7 @@
         </el-header>
         <el-main class="nopadding">
             <fc-table ref="fcTableRef" rowKey="name" :initParam="requestParam" :requestApi="getTableList"
-                :columns="columns" :border="false">
+                :columns="columns">
                 <template #status="scope">
                     <el-switch v-model="scope.row.status" />
                 </template>

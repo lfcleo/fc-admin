@@ -86,7 +86,7 @@ export interface FcTableSelectModel {
 const props = withDefaults(defineProps<FcTableSelectModel>(), {
     initParam: {},
     pagination: true,
-    border: true,
+    border: false,
     pageSizes: () => [10, 20, 50, 100],
     rowKey: "id",
     emptyText: "暂无数据",

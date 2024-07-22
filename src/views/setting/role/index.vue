@@ -13,7 +13,7 @@
             </div>
         </el-header>
         <el-main class="nopadding">
-            <fc-table ref="fcTableRef" rowKey="name" :requestApi="getRoleListApi" :columns="columns" :border="false">
+            <fc-table ref="fcTableRef" rowKey="name" :requestApi="getRoleListApi" :columns="columns">
                 <template #status="scope">
                     <el-switch v-model="scope.row.status" />
                 </template>

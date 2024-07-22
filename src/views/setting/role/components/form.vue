@@ -14,8 +14,8 @@
                     </fc-tree-filter>
                 </el-tab-pane>
                 <el-tab-pane label="API权限" name="two">
-                    <fc-table ref="fcTableRef" :border="false" :indent="20" :requestApi="getApiList1Api"
-                        :columns="columns" :pagination="false">
+                    <fc-table ref="fcTableRef" :indent="20" :requestApi="getApiList1Api" :columns="columns"
+                        :pagination="false">
                     </fc-table>
                 </el-tab-pane>
             </el-tabs>
