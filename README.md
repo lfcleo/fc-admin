@@ -55,6 +55,17 @@ It offers a range of commonly used components, dynamic routing, and permission c
 | 中文文档 | https://doc.fcadmin.fun |
 | English document | https://doc.fcadmin.fun/en |
 
+## 精简版
+
+提供了精简版 [FC-Admin-Thin](https://github.com/lfcleo/fc-admin-thin)，可以直接做开发使用.
+
+Provides a simplified version of [FC-Admin-Thin](https://github.com/lfcleo/fc-admin-thin) It can be directly used for development
+
+| 类型 | 链接 |
+| -------- | -------- |
+| GitHub | https://github.com/lfcleo/fc-admin-thin |
+| Gitee | https://gitee.com/lfcleo/fc-admin-thin |
+
 ## 部分截图（Partial Screenshot）
 
 ![logo](https://mock.fcadmin.fun/web/img/fc-2.png)
