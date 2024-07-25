@@ -7,7 +7,7 @@
             </div>
             <ul v-if="!sysGlobalStore.sysIsMobile" class="nav">
                 <li v-for="item in menuList" :key="item.name" :class="pmenu.path == item.path ? 'active' : ''"
-                    @click="showMenu(item)">
+                    @click="showMenu(item)" v-show="!item.meta.isHide">
                     <el-icon>
                         <component :is="item.meta.icon || 'Menu'" />
                     </el-icon>

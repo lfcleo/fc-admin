@@ -38,13 +38,11 @@ const menuStore = useMenuStore();
     float: left;
 }
 
-.breadcrumb-enter-active,
-.breadcrumb-leave-active {
+.breadcrumb-enter-active {
     transition: all 0.3s;
 }
 
-.breadcrumb-enter-from,
-.breadcrumb-leave-active {
+.breadcrumb-enter-from {
     opacity: 0;
     transform: translateX(20px);
 }

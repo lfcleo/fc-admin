@@ -70,7 +70,7 @@
                             </el-icon>
                             <div>信息</div>
                         </div>
-                        <el-tag type="success">当前版本：{{ packageJson.version }}。更新时间：2024-6-22</el-tag>
+                        <el-tag type="success">当前版本：{{ packageJson.version }}。更新时间：2024-7-22</el-tag>
                     </template>
                     <template #default>
                         <el-descriptions border :column="3">
