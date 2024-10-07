@@ -42,7 +42,7 @@ const props = withDefaults(defineProps<CharVerifyModel>(), {
 });
 
 const canvasId = ref("charVerify" + generateUUID());    //防止页面有多个字符串验证码，导致canvasId一致的问题
-const codeChars = ref("1234567890abcdefjhijklinopqrsduvwxyz");
+const codeChars = ref("23456789abcdefjhjkmnpqrstuvwxyz");
 const loading = ref(false)
 const code = ref("")
 

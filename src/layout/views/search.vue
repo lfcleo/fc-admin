@@ -65,8 +65,8 @@ onMounted(() => {
 const filterMenu = () => {
     let staticMenu: Menu.MenuOptions[] = []
     staticRoutes.forEach(item => {
-        if (item.meta?.isHide) return false
-        if (item.meta?.role && !item.meta.role.some(role => authStore.userInfo.role.includes(role))) return false;
+        if (item.meta?.isHide || item.meta?.type == 'BUTTON') return false
+        if (item.meta?.role && !item.meta.role.some(role => authStore.userInfo.roles?.includes(role))) return false;
         const menuOptions: Menu.MenuOptions | null = {
             path: item.path,
             name: item.name as string,
@@ -96,7 +96,7 @@ const selectMenu = (item: Menu.MenuOptions) => {
     if (!searchStore.list.some(historyItem => historyItem.name === item.name)) {
         searchStore.list.push(item)
     }
-    if (item.meta.isLink) {
+    if (item.meta.type == 'LINK') {
         setTimeout(() => {
             let a = document.createElement("a") as HTMLAnchorElement;
             a.style.display = "none"
@@ -106,6 +106,7 @@ const selectMenu = (item: Menu.MenuOptions) => {
             a.click()
             document.body.removeChild(a)
         }, 10);
+        return
     }
     router.push({ path: item.path })
     emit('selectMenu')

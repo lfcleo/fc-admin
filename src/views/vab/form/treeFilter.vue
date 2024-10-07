@@ -1,20 +1,19 @@
 <template>
     <el-container>
-        <fc-tree-filter show-search label="name" :tree-props="treeProps" title="树形筛选器(单选)"
-            :request-api="getDepartmentDataApi" :default-value="treeFilterValue.departmentId"
-            @change="changeTreeFilter">
+        <fc-tree-filter show-search :tree-props="treeProps" title="树形筛选器(单选)" :request-api="getDepartmentDataApi"
+            :default-value="treeFilterValue.departmentId" @change="changeTreeFilter">
         </fc-tree-filter>
 
         <div style="width: 10px;"></div>
 
-        <fc-tree-filter label="name" title="树形筛选器(多选)" multiple :border="true" :tree-props="treeProps"
+        <fc-tree-filter title="树形筛选器(多选)" multiple :border="true" :tree-props="treeProps"
             :request-api="getDepartmentDataApi" :default-value="treeFilterValue1.departmentId"
             @change="changeTreeFilter1">
         </fc-tree-filter>
 
         <div style="width: 10px;"></div>
 
-        <fc-tree-filter ref="fcTreeFilterRef" label="name" show-search :tree-props="treeProps" title="树形筛选器(插槽)"
+        <fc-tree-filter ref="fcTreeFilterRef" show-search :tree-props="treeProps" title="树形筛选器(插槽)"
             :request-api="getDepartmentDataApi" :default-value="treeFilterValue2.departmentId"
             @change="changeTreeFilter2">
             <template #option="scope" class="custom-tree-node">
@@ -32,6 +31,8 @@
             <div>查看全部数据使用：treeAllData</div>
             <div>使用el-tree的ref使用：treeRef</div>
             <div>动态数据重新获取数据：getData()</div>
+            <div>父子不互相关联：checkStrictly（同官方check-strictly属性）</div>
+            <div>数据加载状态：loading</div>
         </el-main>
     </el-container>
 </template>
@@ -52,7 +53,7 @@ const changeTreeFilter = (val: string) => {
     treeFilterValue.departmentId = val;
 };
 
-const treeFilterValue1 = reactive({ departmentId: ["11"] });
+const treeFilterValue1 = reactive({ departmentId: ["1", "11"] });
 const changeTreeFilter1 = (val: string[]) => {
     ElMessage.success(`你选择了 id 为 ${JSON.stringify(val)} 的数据`);
     treeFilterValue1.departmentId = val;

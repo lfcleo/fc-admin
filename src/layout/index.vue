@@ -56,7 +56,7 @@ watch(route, (val) => {
 onMounted(() => {
     onLayoutResize();
     window.addEventListener('resize', onLayoutResize);
-    const staticMenus = menuTool.convertAndFilterRoutes(menuTool.staticRoutes(), authStore.userInfo.role)
+    const staticMenus = menuTool.convertAndFilterRoutes(menuTool.staticRoutes(), authStore.userInfo.roles)
     menuList.value = [...menuStore.list, ...staticMenus]
     showThis()
 })

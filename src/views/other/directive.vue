@@ -21,11 +21,11 @@
                 style="margin-top: 20px;"></el-alert>
         </el-card>
 
-        <el-card shadow="never" header="v-role 角色权限控制(根据本地存储userinfo.role判断)" style="margin-top: 20px;">
+        <el-card shadow="never" header="v-role 角色权限控制(根据本地存储userinfo.roles判断)" style="margin-top: 20px;">
             <el-button v-role="['admin']" type="primary">v-role="'admin'"</el-button>
             <el-button v-role="['ALL', 'admin']" type="primary">v-role="['ALL','admin']"</el-button>
             <el-alert title="v-role指令 原理是判断是否含有用户所在的角色别名" style="margin-top: 20px;"></el-alert>
-            <el-alert title="本地存储的userinfo.role包含有ALL，则v-role指令会显示。ALL为最高权限。" style="margin-top: 20px;"></el-alert>
+            <el-alert title="本地存储的userinfo.roles包含有ALL，则v-role指令会显示。ALL为最高权限。" style="margin-top: 20px;"></el-alert>
         </el-card>
 
         <el-card shadow="never" header="水印指令" style="margin-top: 20px;">

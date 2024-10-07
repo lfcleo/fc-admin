@@ -17,7 +17,7 @@ export interface UserInfoModel {
     userId: string;
     userName: string;
     dashboard: string;
-    role: string[];
+    roles: string[];
 };
 
 /**

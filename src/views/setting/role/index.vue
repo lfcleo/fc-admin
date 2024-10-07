@@ -14,9 +14,6 @@
         </el-header>
         <el-main class="nopadding">
             <fc-table ref="fcTableRef" rowKey="name" :requestApi="getRoleListApi" :columns="columns">
-                <template #status="scope">
-                    <el-switch v-model="scope.row.status" />
-                </template>
                 <template #options="scope">
                     <div v-if="scope.row.id != 1">
                         <el-button type="primary" icon="Edit" link @click="editClick(scope.row)">编辑信息</el-button>

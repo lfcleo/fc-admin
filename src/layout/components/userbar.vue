@@ -329,4 +329,8 @@ const settingClick = () => {
 .dark .msg-list li a:hover {
     background: #383838;
 }
+
+.badge {
+    margin-top: 4px;
+}
 </style>

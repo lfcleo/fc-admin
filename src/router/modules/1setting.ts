@@ -6,7 +6,8 @@ export default {
     require: "/setting/menu",
     meta: {
         icon: "Setting",
-        title: "配置"
+        title: "配置",
+        type: "MENU"
     },
     children: [
         {
@@ -16,8 +17,8 @@ export default {
             meta: {
                 icon: "Menu",
                 title: "菜单管理",
-                role: ["admin"],    //用户角色含有“admin”才会显示
-                tag: "1.0.1"
+                type: "MENU",
+                role: ["admin"]    //用户角色含有“admin”才会显示
             }
         },
         {
@@ -27,8 +28,8 @@ export default {
             meta: {
                 icon: "Platform",
                 title: "接口管理",
-                role: ["admin"],    //用户角色含有“admin”才会显示
-                tag: "1.0.1"
+                type: "MENU",
+                role: ["admin"]    //用户角色含有“admin”才会显示
             }
         },
         {
@@ -38,7 +39,7 @@ export default {
             meta: {
                 icon: "Avatar",
                 title: "角色管理",
-                tag: "1.0.1"
+                type: "MENU"
             }
         },
         {
@@ -48,7 +49,7 @@ export default {
             meta: {
                 icon: "UserFilled",
                 title: "用户管理",
-                tag: "1.0.1"
+                type: "MENU"
             }
         },
         {
@@ -58,7 +59,7 @@ export default {
             meta: {
                 icon: "Memo",
                 title: "字典管理",
-                tag: "1.0.1"
+                type: "MENU"
             }
         }
     ]

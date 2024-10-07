@@ -3,8 +3,8 @@
         <el-aside>
             <el-container>
                 <el-main class="nopadding">
-                    <fc-tree-filter show-search label="name" :showAll="false" :request-api="getDictListApi"
-                        :default-value="departmentId" @change="changeTreeFilter">
+                    <fc-tree-filter :tree-props="{ label: 'name' }" show-search :showAll="false"
+                        :request-api="getDictListApi" :default-value="departmentId" @change="changeTreeFilter">
                         <template #option="scope">
                             <span class="custom-tree-node">
                                 <span class="code">{{ scope.row.data.code }}</span>

@@ -24,8 +24,9 @@
                         </el-form-item>
                         <el-form-item label="类型">
                             <el-radio-group v-model="menuType" @change="menuTypeChange">
-                                <el-radio-button label="菜单" :value="false" />
-                                <el-radio-button label="外链" :value="true" />
+                                <el-radio-button label="菜单" value="MENU" />
+                                <el-radio-button label="按钮" value="BUTTON" />
+                                <el-radio-button label="外链" value="LINK" />
                             </el-radio-group>
                         </el-form-item>
                         <el-form-item label="名称" prop="name" :rules="{ required: true, message: '请输入菜单名称' }">
@@ -135,8 +136,8 @@ const parameList = reactive<ftModel[]>([])
 const emit = defineEmits(['submit', 'cancel']); //定义emit
 
 // 菜单类型变化监听,是否是外链
-const menuTypeChange = (value: boolean) => {
-    menuModel.value.meta.isLink = value
+const menuTypeChange = (value: string) => {
+    menuModel.value.meta.type = value
 }
 
 // 提交按钮响应方法

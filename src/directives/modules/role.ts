@@ -7,7 +7,7 @@ import { useAuthStore } from "@/store/modules/auth";
  */
 const role: Directive = {
     mounted(el: HTMLElement, binding: DirectiveBinding<string[]>) {
-        const roles = useAuthStore().userInfo.role;
+        const roles = useAuthStore().userInfo.roles;
         if (roles.includes('ALL')) {
             return
         }

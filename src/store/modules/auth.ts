@@ -9,7 +9,7 @@ export const useAuthStore = defineStore('authStore', {
             userId: "",
             userName: "",
             dashboard: "",
-            role: [],
+            roles: [],
         } as UserInfoModel
     }),
     persist: {

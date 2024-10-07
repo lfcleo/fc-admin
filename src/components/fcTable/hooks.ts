@@ -44,7 +44,7 @@ export const useTable = (
     const pageParam = computed({
         get: () => {
             return {
-                pageNum: state.pageable.page,
+                page: state.pageable.page,
                 pageSize: state.pageable.pageSize
             };
         },
@@ -62,7 +62,6 @@ export const useTable = (
             state.loading = true
             // 先把初始化参数和分页参数放到总参数里面
             Object.assign(state.totalParam, initParam, isPageable ? pageParam.value : {});
-            // let { data } = await api({ ...state.searchInitParam, ...state.totalParam });
             let { data } = await api({ ...state.totalParam });
             dataCallBack && (data = dataCallBack(data));
             state.tableData = isPageable ? data.list : data;

@@ -65,7 +65,7 @@ const initMenu = ref<Menu.MenuOptions>({
         icon: '',
         title: '',
         active: '',
-        isLink: false,
+        type: 'MENU',
         isHide: false,
         isFull: false,
         isAffix: false,

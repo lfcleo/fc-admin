@@ -8,8 +8,11 @@
 <template>
     <div class="fc-icon-select">
         <div class="fc-icon-select__wrapper" :class="{ 'hasValue': selectValue }" @click="open">
-            <el-input :prefix-icon="selectValue || 'el-icon-plus'" v-model="selectValue" :disabled="disabled"
-                readonly></el-input>
+            <el-input :prefix-icon="selectValue" v-model="selectValue" :disabled="disabled" readonly
+                v-if="selectValue"></el-input>
+            <el-input :disabled="disabled" readonly v-else>
+                <template #prefix>无</template>
+            </el-input>
         </div>
         <el-dialog title="图标选择器" v-model="dialogVisible" :width="760" :close-on-click-modal="false" destroy-on-close
             append-to-body>
@@ -60,7 +63,7 @@ interface iconSelectProps {
 }
 
 const props = withDefaults(defineProps<iconSelectProps>(), {
-    modelValue: 'Apple',
+    modelValue: '',
     disabled: false,
 });
 

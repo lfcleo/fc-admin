@@ -8,18 +8,29 @@
             <p>当前页面无权限访问或者打开了一个不存在的链接，请检查当前账户权限和链接的可访问性。</p>
             <el-button type="primary" plain round @click="goHome">返回首页</el-button>
             <el-button type="primary" round @click="goBack">返回上一页</el-button>
+            <el-button type="primary" round @click="goLogin">清空缓存返回登录页面</el-button>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import router from '@/router';
+import { useAuthStore } from "@/store/modules/auth";
+
+const authStore = useAuthStore()
 const goHome = () => {
     location.href = "#/"
 }
 
 const goBack = () => {
     router.go(-1);
+}
+
+const goLogin = () => {
+    authStore.$reset();
+    router.replace({
+        path: '/login'
+    })
 }
 </script>
 

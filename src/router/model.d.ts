@@ -11,8 +11,8 @@ declare module 'vue-router' {
         title: string;
         /** 菜单栏高亮,默认激活菜单的 index */
         active?: string;
-        /** 打开外部链接的url地址 */
-        isLink?: boolean;
+        /** 此菜单类型，MENU=菜单，LINK=外链，BUTTON=按钮 */
+        type: string;
         /** 是否在菜单中隐藏 */
         isHide?: boolean;
         /** 菜单是否全屏 (示例：数据大屏页面) */

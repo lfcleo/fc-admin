@@ -3,30 +3,10 @@
         <el-header>
             <div class="left-panel">
                 <el-button type="primary" @click="showTableDataClick">查看表格数据</el-button>
-                <el-button type="primary" @click="showSectionClick">查看选中的行数据（多选）</el-button>
-                <el-button type="primary" @click="showSectionKeyClick">查看根据rowKey选中的行数据（多选）</el-button>
-                <el-button type="primary" @click="isSelectClick">是否选中了数据（多选）</el-button>
-                <el-button type="primary" @click="showRadioClick">查看选中的行数据（单选）</el-button>
             </div>
         </el-header>
         <el-main class="nopadding">
-            <fc-table stripe ref="fcTableRef" rowKey="name" :requestApi="getTableList" :columns="columns"
-                @darg-sort="sortTable">
-                <!-- 展开行内容 -->
-                <template #expand="scope">
-                    <div>这是展开行内容，这行的数据是{{ scope.row }}</div>
-                </template>
-                <!-- 自定义表格头部内容 -->
-                <template #nameHeader="scope">
-                    自定义表头<el-button type="primary">
-                        {{ scope.column.label }}
-                    </el-button>
-                </template>
-                <!-- 自定义表格内容 -->
-                <template #name="scope">
-                    自定义表格内容
-                    <el-tag>{{ scope.row.name }}</el-tag>
-                </template>
+            <fc-table stripe ref="fcTableRef" rowKey="name" :requestApi="getTableList" :columns="columns">
                 <template #status="scope">
                     <el-switch v-model="scope.row.status" />
                 </template>
@@ -50,16 +30,11 @@ import { reactive, ref } from "vue";
 import { ColumnProps, FcTableInstance } from "@/components/fcTable/model"
 import { TableListModel } from "@/models/tableModel"
 import { getTabelDataApi } from '@/api/modules/table';
-import { ElMessage, ElMessageBox } from "element-plus";
+import { ElMessage } from "element-plus";
 import router from '@/router';
 
 // 表格配置项
 const columns = reactive<ColumnProps<TableListModel>[]>([
-    { type: "selection", fixed: "left", width: 50 },
-    { type: "radio", label: "单选", width: 80 },
-    { type: "sort", label: "拖动排序", width: 80 },
-    { type: "expand", label: "展开行", width: 80 },
-    { type: "index", label: "序号", width: 80 },
     { prop: "id", label: "ID", width: 100 },
     { prop: "name", label: "名称", width: 200 },
     { prop: "status", label: "状态", width: 200 },
@@ -76,48 +51,10 @@ const getTableList = (params: any) => {
     return getTabelDataApi(newParams);
 };
 
-// 表格拖拽排序
-const sortTable = ({ newIndex, oldIndex }: { newIndex?: number; oldIndex?: number }) => {
-    console.log(newIndex, oldIndex);
-    console.log(fcTableRef.value?.tableData);
-    ElMessage.success("修改列表排序成功");
-};
-
 //查看表格数据
 const showTableDataClick = () => {
     ElMessage.success("前往控制台查看");
     console.log(fcTableRef.value?.tableData)
-}
-
-// 查看选中的行数据（多选）
-const showSectionClick = () => {
-    console.log(fcTableRef.value?.selectedList)
-    ElMessageBox.confirm(`选中了${fcTableRef.value?.selectedList.length}条数据，在控制台查看。`, "选中的行数据（多选）").then(() => {
-    }).catch(() => {
-    })
-}
-
-// 查看选中的行数据（多选）
-const showSectionKeyClick = () => {
-    console.log(fcTableRef.value?.selectedListKeys)
-    ElMessageBox.confirm(`选中了${fcTableRef.value?.selectedListKeys.length}条数据，在控制台查看。选中的数据根据rowKey值确定的。默认为id。`, "选中的行数据（多选）").then(() => {
-    }).catch(() => {
-    })
-}
-
-//是否选中了数据（多选）
-const isSelectClick = () => {
-    console.log(fcTableRef.value?.isSelected)
-    let msg: string = fcTableRef.value?.isSelected ? '选中了数据' : '没有选中数据'
-    ElMessage.success(msg);
-}
-
-// 查看选中的行数据（单选）
-const showRadioClick = () => {
-    console.log(fcTableRef.value?.radio)
-    ElMessageBox.confirm(`${fcTableRef.value?.radio}--选中的数据根据rowKey值确定的。默认为id。`, "选中的行数据（单选）").then(() => {
-    }).catch(() => {
-    })
 }
 
 // 查看选项

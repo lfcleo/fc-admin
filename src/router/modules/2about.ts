@@ -6,6 +6,7 @@ export default {
     component: () => import("@/views/about/index.vue"),
     meta: {
         icon: "WarningFilled",
-        title: "关于"
+        title: "关于",
+        type: "MENU"
     }
 } as RouteRecordRaw

@@ -26,7 +26,7 @@ interface FormData {
 }
 
 const form = reactive<FormData>({
-    icon: 'Apple',
+    icon: '',
 });
 
 const ruleFormRef = ref<FormInstance>()

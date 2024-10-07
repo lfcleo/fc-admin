@@ -9,28 +9,28 @@
     <div class="fc-upload-box">
         <el-upload :id="uuid" action="#" :class="['upload', self_disabled ? 'disabled' : '', drag ? 'no-border' : '']"
             :multiple="false" :disabled="self_disabled" :show-file-list="false" :on-change="handleChange"
-            :http-request="handleHttpUpload" :before-upload="beforeUpload" :on-success="uploadSuccess"
-            :on-error="uploadError" :drag="drag" :accept="fileType.join(',')" :auto-upload="!cropper">
+            :http-request="handleHttpUpload" :before-upload="beforeUpload" :on-success="onSuccess" :on-error="onError"
+            :drag="drag" :accept="fileType.join(',')" :auto-upload="!cropper">
             <template v-if="imageUrl">
                 <img :src="imageUrl" class="fc-upload-image" />
                 <div class="fc-upload-handle" @click.stop>
-                    <div v-if="!self_disabled" class="fc-handle-icon" @click="editImg">
-                        <el-icon>
-                            <Edit />
+                    <div v-if="!self_disabled && editBtn" class="fc-handle-icon" @click="editImg">
+                        <el-icon v-if="editBtnOption.icon">
+                            <component :is="editBtnOption.icon" />
                         </el-icon>
-                        <span>编辑</span>
+                        <span v-if="editBtnOption.title">{{ editBtnOption.title }}</span>
                     </div>
-                    <div class="fc-handle-icon" @click="imgViewVisible = true">
-                        <el-icon>
-                            <ZoomIn />
+                    <div v-if="showBtn" class="fc-handle-icon" @click="imgViewVisible = true">
+                        <el-icon v-if="showBtnOption.icon">
+                            <component :is="showBtnOption.icon" />
                         </el-icon>
-                        <span>查看</span>
+                        <span v-if="showBtnOption.title">{{ showBtnOption.title }}</span>
                     </div>
-                    <div v-if="!self_disabled" class="fc-handle-icon" @click="deleteImg">
-                        <el-icon>
-                            <Delete />
+                    <div v-if="!self_disabled && deleBtn" class="fc-handle-icon" @click="deleteImg">
+                        <el-icon v-if="deleBtnOption.icon">
+                            <component :is="deleBtnOption.icon" />
                         </el-icon>
-                        <span>删除</span>
+                        <span v-if="deleBtnOption.title">{{ deleBtnOption.title }}</span>
                     </div>
                 </div>
             </template>
@@ -130,10 +130,19 @@ interface UploadFileProps {
     cropper?: boolean;              // 是否启用裁剪图片 ==> 非必传，默认为false
     cropperOption?: CropperOption;  // 裁剪图片配置选项
     comporess?: boolean;            // 是否启用图片压缩 ===> 非必传，默认为false
-    comporessQuality?: number       // 图片压缩质量 取0-1之间 ===> 非必传，默认0.4
+    comporessQuality?: number;      // 图片压缩质量 取0-1之间 ===> 非必传，默认0.4
+    editBtn?: boolean;              // 是否显示编辑按钮
+    editBtnOption?: BtnOption;      // 编辑按钮配置
+    showBtn?: boolean;              // 是否显示查看按钮
+    showBtnOption?: BtnOption;      // 查看按钮配置
+    deleBtn?: boolean;              // 是否显示删除按钮
+    deleBtnOption?: BtnOption;      // 删除按钮配置
+    onSuccess?: () => void;         // 图片上传成功回调
+    onError?: () => void;           // 图片上传失败回调
 }
 
-interface CropperOption {
+// 裁剪图片配置
+export interface CropperOption {
     autoCropWidth?: number,      // 默认生成截图框宽度 默认200
     autoCropHeight?: number,     // 默认生成截图框高度 默认200
     outputType?: string,         // 裁剪生成图片的格式 jpeg, png, webp，默认png
@@ -141,6 +150,11 @@ interface CropperOption {
     fixedBox?: boolean,          // 固定截图框大小,默认false
 }
 
+// 编辑/查看/删除按钮配置
+export interface BtnOption {
+    icon?: string;               // 按钮图标
+    title?: string;              // 按钮标题
+}
 // 接受父组件参数
 const props = withDefaults(defineProps<UploadFileProps & { cropperOption?: CropperOption }>(), {
     imageUrl: "",
@@ -160,6 +174,28 @@ const props = withDefaults(defineProps<UploadFileProps & { cropperOption?: Cropp
         fixedBox: false,        // 固定截图框大小
     }),
     comporess: false,
+    editBtn: true,
+    editBtnOption: (): BtnOption => ({
+        icon: "Edit",
+        title: "编辑",
+    }),
+    showBtn: true,
+    showBtnOption: (): BtnOption => ({
+        icon: "ZoomIn",
+        title: "查看",
+    }),
+    deleBtn: true,
+    deleBtnOption: (): BtnOption => ({
+        icon: "Delete",
+        title: "删除",
+    }),
+    onSuccess: () => { },
+    onError: () => {
+        ElNotification({
+            message: "图片上传失败，请您重新上传！",
+            type: "error"
+        });
+    },
 });
 
 // 生成组件唯一id
@@ -284,7 +320,7 @@ const requestHandler = async (formData: FormData, errCallBack?: (error: any) => 
         if (errCallBack) {
             errCallBack(error)
         } else {
-            uploadError()
+            props.onError()
         }
     }
 }
@@ -298,22 +334,6 @@ const deleteImg = () => {
 const editImg = () => {
     const dom = document.querySelector(`#${uuid.value} .el-upload__input`);
     dom && dom.dispatchEvent(new MouseEvent("click"));
-};
-
-// @description 图片上传成功
-const uploadSuccess = () => {
-    ElNotification({
-        message: "图片上传成功！",
-        type: "success"
-    });
-};
-
-// 图片上传错误
-const uploadError = () => {
-    ElNotification({
-        message: "图片上传失败，请您重新上传！",
-        type: "error"
-    });
 };
 
 // 打开裁剪弹窗

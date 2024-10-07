@@ -24,4 +24,11 @@ for (const [key, component] of Object.entries(FcIcons)) {
     app.component(`FcIcon${key}`, component)
 }
 
+//捕捉全局错误
+app.config.errorHandler = (err, instance, info) => {
+    console.error("捕获到全局错误：", err);
+    console.error("出错的组件实例：", instance);
+    console.error("错误信息：", info);
+};
+
 app.mount('#app')
